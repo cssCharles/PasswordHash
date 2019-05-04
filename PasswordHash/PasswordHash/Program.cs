@@ -14,7 +14,16 @@ namespace PasswordHash
 				
 				Console.Clear();
 				Console.WriteLine("Enter Password");
-				string PW = Console.ReadLine();
+				
+				//let's hide the password while it's being typed
+				string PW = null;
+				while (true)
+				{
+					var key = Console.ReadKey(true);
+					if (key.Key == ConsoleKey.Enter)
+						break;
+					PW += key.KeyChar;
+				} //End Hide password
 
 				if (PasswordHash.ValidatePassword(PW, theHash))
 				{
